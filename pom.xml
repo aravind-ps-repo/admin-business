@@ -51,7 +51,6 @@
     <dependency>
       <groupId>io.github.resilience4j</groupId>
       <artifactId>resilience4j-spring-boot2</artifactId>
-      <version>1.7.1</version>
     </dependency>
 
     <!-- Lombok (optional) -->
@@ -66,6 +65,23 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+        <version>3.1.7</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>spring-mock-mvc</artifactId>
+        <version>5.3.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-test</artifactId>
+        <scope>test</scope>
+    </dependency>
 
   </dependencies>
 
@@ -75,6 +91,28 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <version>3.1.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <baseClassForTests>com.example.demo.controller.AdminControllerBase</baseClassForTests>
+                    <testFramework>JUNIT5</testFramework>
+                </configuration>
+            </plugin>
     </plugins>
   </build>
+
+  <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2021.0.8</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

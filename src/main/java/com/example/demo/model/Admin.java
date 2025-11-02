@@ -1,30 +1,33 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "admins")
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    @Column(unique = true)
     private String email;
 
+    @NotNull(message = "Age is required")
+    @Min(value = 0, message = "Age must be >= 0")
     private Integer age;
-
-    public Customer() {}
-
-    public Customer(String name, String email, Integer age) {
+    public Admin(String name, String email, Integer age) {
         this.name = name;
         this.email = email;
         this.age = age;
     }
-
+    public Admin() {
+	}
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }

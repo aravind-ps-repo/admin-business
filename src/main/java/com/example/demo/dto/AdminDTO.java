@@ -5,7 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class CustomerDTO {
+public class AdminDTO {
     private Long id;
 
     @NotBlank(message = "Name is required")
@@ -18,6 +18,15 @@ public class CustomerDTO {
     @NotNull(message = "Age required")
     @Min(value = 0, message = "Age must be >= 0")
     private Integer age;
+
+    public AdminDTO() {
+    }
+
+    public AdminDTO(String name, String email, Integer age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

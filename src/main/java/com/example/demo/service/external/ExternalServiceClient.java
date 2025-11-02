@@ -17,7 +17,7 @@ public class ExternalServiceClient {
 
     @CircuitBreaker(name = "externalService", fallbackMethod = "fallback")
     public String callExternal() {
-        // Example: this URL will fail in demo; purpose is to show circuit breaker usage.
+        // Example: this URL will fail ; purpose is to show circuit breaker usage.
         String url = "http://localhost:9999/unavailable";
         return restTemplate.getForObject(url, String.class);
     }

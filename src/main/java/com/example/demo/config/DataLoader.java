@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.model.Customer;
-import com.example.demo.repository.CustomerRepository;
+import com.example.demo.model.Admin;
+import com.example.demo.repository.AdminRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataLoader {
     @Bean
-    CommandLineRunner init(CustomerRepository repo) {
+    CommandLineRunner init(AdminRepository repo) {
         return args -> {
-            repo.save(new Customer("Aravind", "aravind@example.com", 26));
-            repo.save(new Customer("Sebastian", "sebastian@example.com", 30));
+            repo.save(new Admin("Aravind", "aravind@example.com", 26));
+            repo.save(new Admin("Sebastian", "sebastian@example.com", 30));
         };
     }
 }
