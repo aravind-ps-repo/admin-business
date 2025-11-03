@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.AdminDTO;
+import com.example.demo.dto.AdminStatisticsDTO;
 import com.example.demo.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +48,11 @@ public class AdminController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.deleteAdmin(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/statistics")
+    public ResponseEntity<AdminStatisticsDTO> getStatistics(
+            @RequestParam(defaultValue = "30") int seniorAgeThreshold) {
+        return ResponseEntity.ok(service.getAdminStatistics(seniorAgeThreshold));
     }
 }
